@@ -77,7 +77,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/counter'
+import { useAuthStore } from '@/stores/useUser'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -183,8 +183,8 @@ const handleSubmit = async () => {
         error.value = result.error || '注册失败'
       }
     }
-  } catch (error) {
-    console.error('Form submission error:', error)
+  } catch (err) {
+    console.error('Form submission error:', err)
     error.value = '操作失败，请重试'
   } finally {
     loading.value = false

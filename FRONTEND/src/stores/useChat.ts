@@ -1,16 +1,11 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { messageAPI, userAPI } from '@/services/api'
-import { WebSocketService, type ChatMessage } from '@/services/websocket'
+import { WebSocketService } from '@/services/websocket'
+import type { Message, WebSocketMessage } from '@/types'
 
-interface Message {
-  id?: number
-  sender_id?: number
-  sender_username?: string
-  content: string
-  timestamp: number
+interface ChatMessage extends Message {
   type: 'chat' | 'system' | 'notification'
-  filtered?: boolean
 }
 
 export const useChatStore = defineStore('chat', () => {
@@ -39,8 +34,8 @@ export const useChatStore = defineStore('chat', () => {
         console.log('WebSocket disconnected')
       },
 
-      onMessage: (message: ChatMessage) => {
-        if (message.sender_username && message.content && message.timestamp) {
+      onMessage: (message: WebSocketMessage) => {
+        if (message.type === 'chat_message' && message.sender_username && message.content && message.timestamp) {
           addMessage({
             id: message.id,
             sender_id: message.sender_id,

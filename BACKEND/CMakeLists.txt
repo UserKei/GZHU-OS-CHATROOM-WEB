@@ -44,16 +44,16 @@ find_package(OpenSSL REQUIRED)
 
 # Add executable
 add_executable(chat_server
-    src/main.cpp
-    src/database.cpp
-    src/auth.cpp
-    src/content_filter.cpp
-    src/websocket_manager.cpp
+    main.cpp
+    src/core/database.cpp
+    src/core/auth.cpp
+    src/utils/content_filter.cpp
+    src/core/websocket_manager.cpp
 )
 
 # Include directories
 target_include_directories(chat_server PRIVATE
-    src
+    include
     /opt/homebrew/include
     ${SQLITE3_INCLUDE_DIRS}
 )

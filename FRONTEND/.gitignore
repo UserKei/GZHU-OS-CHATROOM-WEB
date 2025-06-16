@@ -1,3 +1,21 @@
+# Chat Room Frontend - Vue3 + TypeScript
+#
+# Project Structure:
+# - src/
+#   - components/ (Vue组件)
+#     - auth/ (登录相关组件)
+#     - chat/ (聊天相关组件)
+#   - stores/ (Pinia状态管理)
+#     - useUser.ts (用户状态)
+#     - useChat.ts (聊天状态)
+#   - services/ (API服务)
+#     - api.ts (REST API)
+#     - websocket.ts (WebSocket)
+#   - types/ (TypeScript类型定义)
+#   - views/ (页面组件)
+#   - router/ (路由配置)
+#   - utils/ (工具函数)
+
 # Logs
 logs
 *.log

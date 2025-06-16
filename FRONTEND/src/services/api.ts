@@ -1,4 +1,14 @@
 import axios from 'axios'
+import type {
+  LoginRequest,
+  RegisterRequest,
+  AuthResponse,
+  User,
+  Message,
+  OnlineUsersResponse,
+  UserSettings,
+  ApiResponse
+} from '@/types'
 
 const API_BASE_URL = 'http://localhost:8080/api'
 
@@ -34,30 +44,32 @@ api.interceptors.response.use(
 
 // 用户相关API
 export const authAPI = {
-  register: (userData: { username: string; password: string; email?: string }) =>
+  register: (userData: RegisterRequest): Promise<ApiResponse> =>
     api.post('/register', userData),
 
-  login: (credentials: { username: string; password: string }) =>
+  login: (credentials: LoginRequest): Promise<{ data: AuthResponse }> =>
     api.post('/login', credentials),
 
-  logout: () => api.post('/logout'),
+  logout: (): Promise<ApiResponse> => api.post('/logout'),
 
-  getUserSettings: () => api.get('/user/settings'),
+  getUserSettings: (): Promise<{ data: UserSettings }> => api.get('/user/settings'),
 
-  updateUserSettings: (settings: { accept_messages: boolean }) =>
+  updateUserSettings: (settings: UserSettings): Promise<ApiResponse> =>
     api.put('/user/settings', settings),
 }
 
 // 消息相关API
 export const messageAPI = {
-  getMessages: (limit = 50) => api.get(`/messages?limit=${limit}`),
+  getMessages: (limit = 50): Promise<{ data: Message[] }> =>
+    api.get(`/messages?limit=${limit}`),
 
-  deleteMessage: (messageId: number) => api.delete(`/messages/${messageId}`),
+  deleteMessage: (messageId: number): Promise<ApiResponse> =>
+    api.delete(`/messages/${messageId}`),
 }
 
 // 用户相关API
 export const userAPI = {
-  getOnlineUsers: () => api.get('/users/online'),
+  getOnlineUsers: (): Promise<{ data: OnlineUsersResponse }> => api.get('/users/online'),
 }
 
 // 健康检查

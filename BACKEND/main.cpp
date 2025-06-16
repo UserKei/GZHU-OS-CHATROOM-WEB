@@ -5,10 +5,10 @@
 #include <thread>
 #include <chrono>
 
-#include "database.h"
-#include "auth.h"
-#include "content_filter.h"
-#include "websocket_manager.h"
+#include "core/database.h"
+#include "core/auth.h"
+#include "utils/content_filter.h"
+#include "core/websocket_manager.h"
 
 using json = nlohmann::json;
 

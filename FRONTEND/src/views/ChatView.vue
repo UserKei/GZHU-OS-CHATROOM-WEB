@@ -129,8 +129,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/counter'
-import { useChatStore } from '@/stores/chat'
+import { useAuthStore } from '@/stores/useUser'
+import { useChatStore } from '@/stores/useChat'
 
 const router = useRouter()
 const authStore = useAuthStore()

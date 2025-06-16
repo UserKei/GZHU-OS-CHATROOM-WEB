@@ -1,20 +1,7 @@
-interface ChatMessage {
-  id?: number
-  type: 'chat_message' | 'system' | 'user_joined' | 'user_left' | 'message_deleted' | 'auth_success' | 'auth_error' | 'error'
-  sender_id?: number
-  sender_username?: string
-  username?: string
-  content?: string
-  message?: string
-  timestamp?: number
-  filtered?: boolean
-  message_id?: number
-  deleted_by?: string
-  online_count?: number
-}
+import type { WebSocketMessage } from '@/types'
 
 interface WebSocketEventHandlers {
-  onMessage?: (message: ChatMessage) => void
+  onMessage?: (message: WebSocketMessage) => void
   onUserJoined?: (username: string, onlineCount: number) => void
   onUserLeft?: (username: string, onlineCount: number) => void
   onMessageDeleted?: (messageId: number, deletedBy: string) => void
@@ -71,7 +58,7 @@ class WebSocketService {
 
     this.ws.onmessage = (event) => {
       try {
-        const message: ChatMessage = JSON.parse(event.data)
+        const message: WebSocketMessage = JSON.parse(event.data)
         this.handleMessage(message)
       } catch (error) {
         console.error('Failed to parse WebSocket message:', error)
@@ -93,7 +80,7 @@ class WebSocketService {
     }
   }
 
-  private handleMessage(message: ChatMessage) {
+  private handleMessage(message: WebSocketMessage) {
     switch (message.type) {
       case 'chat_message':
         this.handlers.onMessage?.(message)
@@ -185,4 +172,4 @@ class WebSocketService {
   }
 }
 
-export { WebSocketService, type ChatMessage, type WebSocketEventHandlers }
+export { WebSocketService, type WebSocketEventHandlers }

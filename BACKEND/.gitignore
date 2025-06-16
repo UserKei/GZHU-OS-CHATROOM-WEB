@@ -1,3 +1,15 @@
+# Chat Room Server - Backend .gitignore
+# 
+# Project Structure:
+# - main.cpp (in root)
+# - include/ (header files)
+#   - core/ (database, auth, websocket)
+#   - utils/ (content filter, utilities)
+# - src/ (source files)
+#   - core/ (implementation files)
+#   - utils/ (utility implementations)
+# - build/ (build output - ignored)
+
 # Build directories
 build/
 cmake-build-*/
@@ -189,6 +201,3 @@ config.local.*
 *.bak
 *.backup
 *.old
-
-# Core dumps
-core
