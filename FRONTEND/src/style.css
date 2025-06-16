@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  }
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80;
+  }
+
+  .message-bubble {
+    @apply px-4 py-2 rounded-2xl max-w-xs lg:max-w-md break-words;
+  }
+
+  .message-bubble-sent {
+    @apply bg-apple-blue text-white ml-auto;
+  }
+
+  .message-bubble-received {
+    @apply bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white mr-auto;
+  }
+
+  .chat-input {
+    @apply w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 rounded-full border-none outline-none resize-none;
+  }
+
+  .sidebar-item {
+    @apply flex items-center p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer;
+  }
+
+  .sidebar-item.active {
+    @apply bg-apple-blue text-white;
+  }
+
+  .user-avatar {
+    @apply w-10 h-10 rounded-full flex items-center justify-center font-semibold text-white;
+  }
+
+  .online-indicator {
+    @apply w-3 h-3 bg-apple-green rounded-full border-2 border-white absolute -bottom-0.5 -right-0.5;
+  }
+
+  .loading-dots {
+    @apply flex space-x-1;
+  }
+
+  .loading-dots div {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-bounce;
+  }
+
+  .loading-dots div:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  .loading-dots div:nth-child(2) {
+    animation-delay: 150ms;
+  }
+
+  .loading-dots div:nth-child(3) {
+    animation-delay: 300ms;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-apple-blue to-telegram-blue bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-apple-blue to-telegram-blue;
+  }
+}
+
+/* Element Plus customizations */
+.el-input__wrapper {
+  @apply !bg-gray-100 dark:!bg-gray-800 !border-none !rounded-full;
+}
+
+.el-input__inner {
+  @apply !bg-transparent;
+}
+
+.el-button--primary {
+  @apply !bg-apple-blue !border-apple-blue;
+}
+
+.el-button--primary:hover {
+  @apply !bg-blue-600 !border-blue-600;
+}
+
+.el-dialog {
+  @apply !rounded-2xl;
+}
+
+.el-message-box {
+  @apply !rounded-2xl;
+}
+
+/* Dark mode adjustments */
+.dark .el-input__wrapper {
+  @apply !bg-gray-800 !text-white;
+}
+
+.dark .el-dialog {
+  @apply !bg-gray-800;
+}
+
+.dark .el-message-box {
+  @apply !bg-gray-800;
+}
